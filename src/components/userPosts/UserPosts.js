@@ -1,21 +1,31 @@
 import { useState, useContext, useEffect } from "react";
 import { BlogContext } from "../../BlogContext";
-
+import { useParams } from "react-router-dom";
 
 const UsersPosts = () => {
-    const { user} = useContext(BlogContext);
-    const [userPosts, SetUserPosts] = useState([])
-    useEffect(()=>{
-        console.log(user);
-        fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`).then(res=>res.json()).then(data=>SetUserPosts(data))
-    },[])
+  const { userId } = useParams();
+  let { user, SetUsers, users, SetUser } = useContext(BlogContext);
+  const [userPosts, SetUserPosts] = useState([]);
+  useEffect(() => {
 
-  return <>
-  {  console.log(userPosts)}
-  <h1>{user.id} Posts</h1>
+    user.id && fetch("https://jsonplaceholder.typicode.com/users")
+    .then((res) => res.json())
+    .then((data) => SetUser(data[userId-1]));
+    
+    console.log(user);
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
+      .then((res) => res.json())
+      .then((data) => SetUserPosts(data));
+  }, []);
 
-  {/* <h3>{userPosts[0].title}</h3> */}
-  </>;
+  return (
+    <>
+      {console.log(userPosts)}
+      <h1>{userId} Posts</h1>
+
+      {/* <h3>{userPosts[0].title}</h3> */}
+    </>
+  );
 };
 
 export default UsersPosts;

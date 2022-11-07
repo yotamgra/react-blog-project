@@ -11,7 +11,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<UsersTable />} />
-            <Route path="/user-posts" element={<UsersPosts/>}/>
+            <Route path="/user-posts/:userId" element={<UsersPosts/>}/>
           </Routes>
         </div>
       </BrowserRouter>

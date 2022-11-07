@@ -14,6 +14,6 @@ export const BlogProvider = ({ children }) => {
       .then((data) => SetUsers(data));
   }, []);
 
-  const value = {users, user, SetUser}
+  const value = {users, user, SetUsers, SetUser}
   return <BlogContext.Provider value={value}>{children}</BlogContext.Provider>;
 };

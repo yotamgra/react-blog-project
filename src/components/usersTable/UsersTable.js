@@ -46,7 +46,7 @@ const UsersTable = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  <Link to="/user-posts" className="name-in-table">{row.name}</Link>
+                  <Link to={`/user-posts/${row.id}`} className="name-in-table">{row.name}</Link>
                 </TableCell>
 
                 <TableCell align="center">{row.username}</TableCell>
