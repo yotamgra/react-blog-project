@@ -16,7 +16,7 @@ function createData(name, username, email, id) {
 }
 
 const UsersTable = () => {
-  const { users, SetUserId } = useContext(BlogContext);
+  const { users, SetUser } = useContext(BlogContext);
 
   const rows = users.map((user) =>
     createData(user.name, user.username, user.email, user.id)
@@ -39,7 +39,8 @@ const UsersTable = () => {
             {rows.map((row) => (
               <TableRow
                 onClick={() => {
-                  SetUserId(row.id);
+                    console.log(row.id-1);
+                  SetUser(users[row.id-1]);
                 }}
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

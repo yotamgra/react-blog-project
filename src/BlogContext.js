@@ -5,7 +5,7 @@ export const BlogContext = createContext();
 export const BlogProvider = ({ children }) => {
 
   const [users, SetUsers] = useState([]);
-  const [userId, SetUserId] = useState({})
+  const [user, SetUser] = useState({})
 
   useEffect(() => {
     console.log("hello");
@@ -14,6 +14,6 @@ export const BlogProvider = ({ children }) => {
       .then((data) => SetUsers(data));
   }, []);
 
-  const value = {users, userId, SetUserId}
+  const value = {users, user, SetUser}
   return <BlogContext.Provider value={value}>{children}</BlogContext.Provider>;
 };

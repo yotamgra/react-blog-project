@@ -3,15 +3,18 @@ import { BlogContext } from "../../BlogContext";
 
 
 const UsersPosts = () => {
-    const { userId} = useContext(BlogContext);
+    const { user} = useContext(BlogContext);
     const [userPosts, SetUserPosts] = useState([])
     useEffect(()=>{
-        fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`).then(res=>res.json()).then(data=>console.log(data))
+        console.log(user);
+        fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`).then(res=>res.json()).then(data=>SetUserPosts(data))
     },[])
 
   return <>
-  {/* {console.log("userPosts",userPosts)} */}
-  <h1>{userId} Posts</h1>
+  {  console.log(userPosts)}
+  <h1>{user.id} Posts</h1>
+
+  {/* <h3>{userPosts[0].title}</h3> */}
   </>;
 };
 
