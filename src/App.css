@@ -1,10 +1,28 @@
-.App {
-  text-align: center;
+.user-posts-page {
+  background-color: rgb(168, 193, 230);
 }
-
 .name-in-table {
   text-decoration: none;
   color: black;
 }
 
+.user-posts-header {
+  text-align: center;
+}
+.posts-container {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+}
 
+.post-container {
+  border-radius: 10px;
+  background-color: aliceblue; 
+  padding: 10px;
+  margin-bottom: 10px;
+}
+  
+
+.post-header{
+  margin-bottom: 0;
+}

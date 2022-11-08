@@ -1,27 +1,39 @@
 import { useState, useContext, useEffect } from "react";
 import { BlogContext } from "../../BlogContext";
 import { useParams } from "react-router-dom";
+import Post from "../post/Post";
 
 const UsersPosts = () => {
   const { userId } = useParams();
   let { user, SetUsers, users, SetUser } = useContext(BlogContext);
   const [userPosts, SetUserPosts] = useState([]);
   useEffect(() => {
+    console.warn("useEffect");
+    !user.id &&
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("fetch");
+          SetUser(data[userId - 1]);
+        });
 
-    user.id && fetch("https://jsonplaceholder.typicode.com/users")
-    .then((res) => res.json())
-    .then((data) => SetUser(data[userId-1]));
-    
-    console.log(user);
+    // console.log(user);
     fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
       .then((res) => res.json())
       .then((data) => SetUserPosts(data));
   }, []);
 
+  console.log("user", user);
+
   return (
     <>
-      {console.log(userPosts)}
-      <h1>{userId} Posts</h1>
+      {/* {console.log("userPosts",userPosts)} */}
+      <h1 className="user-posts-header">{user.name} Posts</h1>
+      <div className="posts-container">
+        {userPosts.map((post) => (
+          <Post post={post} key={post.id} />
+        ))}
+      </div>
 
       {/* <h3>{userPosts[0].title}</h3> */}
     </>
