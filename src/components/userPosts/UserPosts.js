@@ -5,16 +5,15 @@ import Post from "../post/Post";
 
 const UsersPosts = () => {
   const { userId } = useParams();
-  let { user, SetUsers, users, SetUser } = useContext(BlogContext);
+  let { user, SetUser } = useContext(BlogContext);
   const [userPosts, SetUserPosts] = useState([]);
   useEffect(() => {
-    console.warn("useEffect");
     !user.id &&
-      fetch("https://jsonplaceholder.typicode.com/users")
+      fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log("fetch");
-          SetUser(data[userId - 1]);
+          SetUser(data);
         });
 
     // console.log(user);
